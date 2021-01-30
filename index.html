@@ -51,20 +51,26 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id ="case-count"type="text" class="form-control text-center" value="1">
+                    <h5 id="case-total">$59</h5>
                 </div>
                 <div class="plus-minus-btn">
-                    <p>+ -</p>
+                    <button id ="case-increase"class="btn btn-default"><i class="fas fa-plus"></i>+</button>
+                    <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i>-</button>
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="phone-count" type="text" class="form-control text-center" value="1">
+                    <h5 id="phone-total">$121</h5>
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
+                    
+                    <button  id ="phone-increase"class="btn btn-default"><i class="fas fa-plus"></i></i>+</button>
+                    <button id="phone-decrease" class="btn btn-default"><i class="fas fa-minus"></i>-</button>
+                 
                 </div>
             </div>
             <div class="calculations">
@@ -73,16 +79,16 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p id="total-price">$500</p>
                     </div>
                 </div>
 
                 <div class="amount">
                     <div class="left">
-                        <p>Charge 10% VAT</p>
+                        <p >Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p id="tax-amount">$50</p>
                     </div>
                 </div>
                 <hr>
@@ -91,7 +97,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p  id="grand-total">$550</p>
                     </div>
                 </div>
             </div>
@@ -102,6 +108,62 @@
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
         </div>
+        <script>
+            document.getElementById("case-increase").addEventListener("click",function(){
+               const caseInput=document.getElementById("case-count");
+               const caseCount=parseInt(caseInput.value);
+               const newCount=caseCount+1;
+               caseInput.value=newCount;
+               const caseTotal=newCount*59;
+               document.getElementById("case-total").innerText='$'+caseTotal;
+               calculateTotal ();
+             
+            })
+            document.getElementById("case-decrease").addEventListener("click",function(){
+               const caseInput=document.getElementById("case-count");
+               const caseCount=parseInt(caseInput.value);
+               const newCount=caseCount-1;
+               caseInput.value=newCount;
+               const caseTotal=newCount*150;
+               document.getElementById("case-total").innerText= '$'+caseTotal;
+               calculateTotal();
+      
+            })
+            document.getElementById("phone-increase").addEventListener("click",function(){
+               const phoneInput=document.getElementById("phone-count");
+               const phoneCount=parseInt(phoneInput.value);
+               const phoneNewCount=phoneCount+1;
+               phoneInput.value=phoneNewCount;
+               const phoneTotal=phoneNewCount*1219;
+               console.log(phoneTotal);
+               document.getElementById("phone-total").innerText='$'+phoneTotal;
+               calculateTotal ();
+             
+            })
+            document.getElementById("phone-decrease").addEventListener("click",function(){
+               const phoneInput=document.getElementById("phone-count");
+               const phoneCount=parseInt(phoneInput.value);
+               const phoneNewCount=phoneCount-1;
+               phoneInput.value=phoneNewCount;
+               const phoneTotal=phoneNewCount*100;
+               document.getElementById("phone-total").innerText= '$'+phoneTotal;
+               calculateTotal ();
+      
+            })
+            function calculateTotal(){
+   
+               const phoneInput=document.getElementById("phone-count");
+               const phoneCount=parseInt(phoneInput.value);
+               const caseInput=document.getElementById("case-count");
+               const caseCount=parseInt(caseInput.value);
+               const totalPrice=phoneCount*1219+caseCount*59;
+               document.getElementById("total-price").innerText='$'+totalPrice;
+               const tax=Math.round(totalPrice*0.1);
+               document.getElementById("tax-amount").innerText='$'+tax;
+               const grandTotal=totalPrice+tax;
+               document.getElementById("grand-total").innerText='$'+grandTotal;
+            }
+         </script>
     </section>
 
     <!--Thank You-->
